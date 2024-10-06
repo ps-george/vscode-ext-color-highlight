@@ -2,7 +2,7 @@
   "name": "color-highlight-decimals",
   "displayName": "Color Highlight with decimals",
   "description": "Highlight web colors in your editor",
-  "version": "2.9.3",
+  "version": "2.10.0",
   "publisher": "ps-george",
   "license": "GPL-3.0",
   "engines": {
@@ -21,6 +21,7 @@
   },
   "scripts": {
     "build": "webpack --mode development",
+    "package": "vsce package",
     "vscode:prepublish": "webpack --mode production",
     "dev": "webpack --mode development -w",
     "postinstall": "node ./node_modules/vscode/bin/install",

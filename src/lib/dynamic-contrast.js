@@ -31,11 +31,12 @@ function hsl2rgb(h, s, l) {
 export function getColorContrast(color) {
   const rgbExp = /^rgba?[\s+]?\(\s*([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\s*(?:,\s*([\d.]+)\s*)?\)/im,
     hexExp = /^(?:#)|([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$/igm,
-    hslExp = /^hsla?\(\s*([\d]+)\s*,\s*([\d.]+)%\s*,\s*([\d.]+)%\s*(?:,\s*([\d.]+)\s*)?\)/im;
+    hslExp = /^(?:hsla?\(\s*([\d.]+)\s*,\s*([\d.]+)%\s*,\s*([\d.]+)%\s*(?:,\s*([\d.]+)\s*)?\)|([\d.]+)\s+([\d.]+)%\s+([\d.]+)%)/im;
   let rgb = color.match(rgbExp),
     hex = color.match(hexExp),
     hsl = color.match(hslExp),
     r, g, b;
+
   if (rgb) {
     r = parseInt(rgb[1], 10);
     g = parseInt(rgb[2], 10);
@@ -53,10 +54,19 @@ export function getColorContrast(color) {
     g = parseInt(hex.substr(2, 2), 16);
     b = parseInt(hex.substr(4, 2), 16);
   } else if (hsl) {
-    let h = parseInt(hsl[1], 10),
-      s = parseFloat(hsl[2]),
+    let h, s, l;
+    if (hsl[1]) {
+      // HSL(A) function notation
+      h = parseFloat(hsl[1]);
+      s = parseFloat(hsl[2]);
       l = parseFloat(hsl[3]);
-    [r, g, b] = hsl2rgb(h, s, l); 
+    } else {
+      // Space-separated HSL values
+      h = parseFloat(hsl[5]);
+      s = parseFloat(hsl[6]);
+      l = parseFloat(hsl[7]);
+    }
+    [r, g, b] = hsl2rgb(h, s, l);
   } else {
     rgb = webColors[color.toLowerCase()];
     if (rgb) {

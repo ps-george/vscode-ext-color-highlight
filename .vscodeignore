@@ -5,3 +5,24 @@ test/**
 jsconfig.json
 vsc-extension-quickstart.md
 .eslintrc
+
+# Ignore the source code
+src
+*.ts
+*.map
+*.js
+*.js.map
+
+# Ignore node_modules
+node_modules
+
+# Ignore test and other files
+test
+tests
+.vscode
+.npmignore
+*.log
+*.zip
+.DS_Store
+.gitignore
+.vscodeignore

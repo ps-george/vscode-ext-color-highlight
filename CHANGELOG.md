@@ -3,6 +3,10 @@
 
 ## [Unreleased]
 
+## [2.10.0]
+
+- Add support for hsl without function
+
 ## [2.9.3]
 
 - Bugfix
