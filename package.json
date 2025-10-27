@@ -1,9 +1,9 @@
 {
-  "name": "color-highlight",
-  "displayName": "Color Highlight",
+  "name": "color-highlight-decimals",
+  "displayName": "Color Highlight with decimals",
   "description": "Highlight web colors in your editor",
-  "version": "2.6.0",
-  "publisher": "naumovs",
+  "version": "2.10.0",
+  "publisher": "ps-george",
   "license": "GPL-3.0",
   "engines": {
     "vscode": "^1.57.0"
@@ -21,7 +21,9 @@
   },
   "scripts": {
     "build": "webpack --mode development",
-    "vscode:prepublish": "webpack --mode production",
+    "package": "vsce package",
+    "prepublish": "webpack --mode production",
+    "publish": "vsce publish",
     "dev": "webpack --mode development -w",
     "postinstall": "node ./node_modules/vscode/bin/install",
     "force-resolutions": "npx npm-force-resolutions",
